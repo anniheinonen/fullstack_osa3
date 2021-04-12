@@ -9,10 +9,10 @@ const cors = require('cors')
 app.use(cors())
 app.use(express.json())
 app.use(express.static('build'))
-app.use(morgan(':method :url :status :res[content-length] - :response-time ms'))
+//app.use(morgan(':method :url :status :res[content-length] - :response-time ms'))
 morgan.token('body', (request, response) => JSON.stringify(request.body))
 
-//app.use(morgan(':method :url :status :res[content-length] - :response-time ms :body'))
+app.use(morgan(':method :url :status :res[content-length] - :response-time ms :body'))
 
 let persons = [
     
@@ -94,13 +94,13 @@ app.post('/api/persons', (request, response) => {
         id: generateId(),
     }
 
-    persons = persons.concat(person)
-
     if(persons.some(person => person.name === body.name)) {
-        return response.status(400).json({ 
-            error: 'Name must be unique.' 
-        }) 
-    } 
+      return response.status(400).json({ 
+          error: 'Name must be unique.' 
+      }) 
+  } 
+
+    persons = persons.concat(person)
 
   /*
     const person = new Person({
