@@ -1,1 +1,1 @@
-DELETE http://localhost:3001/api/persons/627
+DELETE https://enigmatic-garden-00297.herokuapp.com/api/persons
