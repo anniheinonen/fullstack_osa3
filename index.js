@@ -96,11 +96,11 @@ app.post('/api/persons', (request, response) => {
 
     persons = persons.concat(person)
 
-   /* if(persons.some(person => person.name === body.name)) {
+    if(persons.some(person => person.name === body.name)) {
         return response.status(400).json({ 
             error: 'Name must be unique.' 
         }) 
-    } */
+    } 
 
   /*
     const person = new Person({
