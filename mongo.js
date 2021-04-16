@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+/* eslint-disable no-unused-vars */
 const mongoose = require('mongoose')
 
 if (process.argv.length<3) {
@@ -14,29 +16,29 @@ const url = `mongodb+srv://anni:${password}@cluster0.rdszi.mongodb.net/people-ap
 mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true })
 
 const personSchema = new mongoose.Schema({
-    name: String,
-    number: String,
-    date: Date,
+  name: String,
+  number: String,
+  date: Date,
 })
 
 const Person = mongoose.model('Person', personSchema)
 
 if (process.argv.length<4) {
-    Person.find({}).then(result => {
-        result.forEach(person => {
-          console.log(person.name, person.number)
-        })
-        mongoose.connection.close()
+  Person.find({}).then(result => {
+    result.forEach(person => {
+      console.log(person.name, person.number)
     })
+    mongoose.connection.close()
+  })
 } else {
-    const person = new Person({
-        name: newName,
-        number: newNumber,
-        date: new Date(),
-      })
-      
-      person.save().then(response => {
-        console.log('person saved!')
-        mongoose.connection.close()
-      })
+  const person = new Person({
+    name: newName,
+    number: newNumber,
+    date: new Date(),
+  })
+
+  person.save().then(response => {
+    console.log('person saved!')
+    mongoose.connection.close()
+  })
 }
